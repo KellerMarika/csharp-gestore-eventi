@@ -44,13 +44,17 @@ namespace GestoreEventi
 
         public static string GetEvents(List<Evento> events)
         {
-            string[] overvieusArray =new string[events.Count()];
-  
-            for (int i = 0; i<events.Count; i++)
+            if (events.Count() == 0) return "spiacente, non ci sono eventi in programma per la data inserita!";
+            else
             {
-              overvieusArray[i] ="Evento n#"+ i + ": " + events[i].ToString() + " -  prenotati " + events[i].Prenotazioni + "/" + events[i].Capienza;
+                string[] overvieusArray = new string[events.Count()];
+
+                for (int i = 0; i < events.Count(); i++)
+                {
+                    overvieusArray[i] = "Evento n#" + i + ": " + events[i].ToString() + " -  prenotati " + events[i].Prenotazioni + "/" + events[i].Capienza;
+                }
+                return String.Join(", ", overvieusArray);
             }
-                return String.Join(", ",overvieusArray); 
         }
 
         public int GetEventsCount() => Eventi.Count();

@@ -10,11 +10,11 @@ namespace GestoreEventi
     {
         private string titolo;
         public string Titolo {
-            get => titolo;     
+            get => titolo;
             set
             {
                 if (!string.IsNullOrWhiteSpace(value)) titolo = value;
-                else Console.WriteLine($"'{value}' non è un dato valido");
+                else throw new Exception ($"il titolo inserito '{value}' non è valido"); 
             }
         }
         private DateTime data;
@@ -25,7 +25,7 @@ namespace GestoreEventi
             {
                 var data_corrente = DateTime.Now;
                 if (data_corrente < value) data = value;
-                else Console.WriteLine($"'{value.ToString("dd/MM/yyyy")}' data inserita già passata");
+                else throw new Exception ($"'{value.ToString("dd/MM/yyyy")}' data inserita già passata");
             }
         }
 
@@ -34,7 +34,7 @@ namespace GestoreEventi
             private set
             {
                 if (value > 0) capienza = value;
-                else Console.WriteLine($"il valore '{value}' inserito per la capienza dell'evento è minore di 0!");
+                else throw new Exception($"il valore '{value}' inserito per la capienza dell'evento è minore di 0!");
             }
         }
         public int Prenotazioni { get; private set;}
